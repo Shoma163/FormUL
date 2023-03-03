@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseConnectionLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,11 @@ namespace FormUL
         {
             InitializeComponent();
 
-            AppFrame.Navigate(new PageTeacher());
+            AppFrame.Navigate(new PageRegistration());
 
             DataContext = this;
 
-            Database.Connect("10.14.206.28", "5432", "student", "1234", "db_FormUL");
+            Connection.Connect("10.14.206.28", "5432", "student", "1234", "db_FormUL");
         }
     }
 }
