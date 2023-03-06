@@ -38,10 +38,10 @@
 
 
                 <Label Content="Статус" Margin="10 0 10 0"></Label>
-                <ComboBox Margin="10"  x:Name="RoleSignUp"></ComboBox>
+                <ComboBox Margin="10"  Name="RoleSignUp" DisplayMemberPath="Name"></ComboBox>
 
                 <Label Content="Класс" Margin="10 0 10 0"></Label>
-                <ComboBox Margin="10" x:Name="ClassSignUp"></ComboBox>
+                <ComboBox Margin="10" Name="ClassSignUp" DisplayMemberPath="ClassName"></ComboBox>
 
                 <Button Content="Далее" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="250" Margin="10 10 10 20" Background="White" Click="RegisterClick"></Button>
             </StackPanel>

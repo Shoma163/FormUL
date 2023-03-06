@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Ink;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FormUL
 {
@@ -24,6 +25,9 @@ namespace FormUL
         public PageRegistration()
         {
             InitializeComponent();
+
+            BindingComBoxRole();
+            BindingComBoxCLass();
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
@@ -33,26 +37,26 @@ namespace FormUL
             var firstName = FirstNameSignUp.Text.Trim();
             var lastName = LastNameSignUp.Text.Trim();
             var patronymic = PatronymicSignUp.Text.Trim();
+            var role = RoleSignUp.Text.Trim();
+            var class1 = ClassSignUp.Text.Trim();
+            Connection.InsertTableAccount(new ClassAccount(login, password, firstName, lastName, patronymic, role, class1));
 
         }
 
-        public void SelectTableAccount()
-        {
-            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Login\",\"Password\",\"FirstName\",\"LastName\",\"Patronymic\", \"Role\",\"Class\"");
-            NpgsqlDataReader result = cmd.ExecuteReader();
-        }
-        public void SelectTableRole()
-        {
-            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Name\" FROM \"Role\"");
-            NpgsqlDataReader result = cmd.ExecuteReader();
-        }
-
-        public void BindingComBox()
+        public void BindingComBoxRole()
         {
             Binding binding = new Binding(); 
-            binding.Source = Collection.roles;
+            binding.Source = Connection.roles;
             RoleSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
-            SelectTableRole();
+            Connection.SelectTableRole();
+        }
+
+        public void BindingComBoxCLass()
+        {
+            Binding binding = new Binding();
+            binding.Source = Connection.classStudents;
+            ClassSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            Connection.SelectTableClass();
         }
     }
 }

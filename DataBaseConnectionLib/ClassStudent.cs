@@ -8,11 +8,11 @@ namespace DataBaseConnectionLib
 {
     public class ClassStudent
     {
-        public ClassStudent(int className)
+        public ClassStudent(string className)
         {
             ClassName = className;
         }
 
-        public int ClassName { get; set; }
+        public string ClassName { get; set; }
     }
 }

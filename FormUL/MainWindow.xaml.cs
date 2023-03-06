@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Npgsql;
+using NpgsqlTypes;
 
 namespace FormUL
 {
@@ -22,11 +24,11 @@ namespace FormUL
         {
             InitializeComponent();
 
+            Connection.Connect("10.14.206.28", "5432", "student", "1234", "db_FormUL");
+
             AppFrame.Navigate(new PageRegistration());
 
             DataContext = this;
-
-            Connection.Connect("10.14.206.28", "5432", "student", "1234", "db_FormUL");
         }
     }
 }

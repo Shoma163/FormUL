@@ -10,7 +10,7 @@ namespace DataBaseConnectionLib
     public class ClassAccount
     {
         
-            public ClassAccount(string login, string password, string firstName, string lastName, string patronymic, string role, int @class)
+            public ClassAccount(string login, string password, string firstName, string lastName, string patronymic, string role, string class1)
             {
                 Login = login;
                 Password = password;
@@ -18,7 +18,7 @@ namespace DataBaseConnectionLib
                 LastName = lastName;
                 Patronymic = patronymic;
                 Role = role;
-                Class = @class;
+                Class = class1;
             }
 
             public string Login { get; set; }
@@ -27,7 +27,7 @@ namespace DataBaseConnectionLib
             public string LastName { get; set; }
             public string Patronymic { get; set; }
             public string Role { get; set; }
-            public int Class { get; set; }
+            public string Class { get; set; }
             
 
 
