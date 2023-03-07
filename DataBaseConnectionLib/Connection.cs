@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
@@ -11,7 +12,7 @@ using NpgsqlTypes;
 
 namespace DataBaseConnectionLib
 {
-    public class Connection
+    public class Connection 
     {
         public static NpgsqlConnection connection;
         public static void Connect(string host, string port, string user, string pass, string database)
@@ -45,6 +46,8 @@ namespace DataBaseConnectionLib
 
             if (result.HasRows)
             {
+
+                result.Read();
                 while (result.Read())
                 {
                     Connection.roles.Add(new ClassRole(result.GetString(0)));
@@ -64,7 +67,20 @@ namespace DataBaseConnectionLib
                 {
                     accounts.Add(new ClassAccount(result.GetString(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4), result.GetString(5), result.GetString(6)));
                 }
+
+                string role = result.GetString(5);
+
                 result.Close();
+
+                switch (role)
+                {
+                    case "Teacher":
+                        goToPageTeather();
+                        break;
+                    case "Student":
+
+                        break;
+                }
             }
         }
 
@@ -158,6 +174,7 @@ namespace DataBaseConnectionLib
             cmd.Parameters.AddWithValue("@classParm", NpgsqlDbType.Varchar, classAccount.Class);
 
             int result = cmd.ExecuteNonQuery();
+
         }
     }
 }

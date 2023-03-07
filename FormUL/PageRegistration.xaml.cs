@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Ink;
 using static System.Net.Mime.MediaTypeNames;
+using System.Data;
 
 namespace FormUL
 {
@@ -33,7 +34,7 @@ namespace FormUL
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
             var login = LoginSignUp.Text.Trim();
-            var password = PasswordSignUp.Text.Trim();
+            var password = PasswordSignUp.Password.Trim();
             var firstName = FirstNameSignUp.Text.Trim();
             var lastName = LastNameSignUp.Text.Trim();
             var patronymic = PatronymicSignUp.Text.Trim();
@@ -42,13 +43,41 @@ namespace FormUL
             Connection.InsertTableAccount(new ClassAccount(login, password, firstName, lastName, patronymic, role, class1));
 
         }
+        public void goToPageTeather()
+        {
+            AppFrame.Navigate(new PageTeacher());
+        }
 
         public void BindingComBoxRole()
         {
             Binding binding = new Binding(); 
             binding.Source = Connection.roles;
             RoleSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
-            Connection.SelectTableRole();
+            //Connection.SelectTableRole();
+            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Login\",\"Password\",\"FirstName\",\"LastName\",\"Patronymic\", \"Role\",\"Class\" FROM \"Account\"");
+            NpgsqlDataReader result = cmd.ExecuteReader();
+
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    Connection.accounts.Add(new ClassAccount(result.GetString(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4), result.GetString(5), result.GetString(6)));
+                }
+
+                string role = result.GetString(5);
+
+                result.Close();
+
+                switch (role)
+                {
+                    case "Teacher":
+                        Frame.goToPageTeather();
+                        break;
+                    case "Student":
+
+                        break;
+                }
+            }
         }
 
         public void BindingComBoxCLass()
