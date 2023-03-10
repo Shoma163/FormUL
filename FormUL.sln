@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormUL", "FormUL\FormUL.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBaseConnectionLib", "DataBaseConnectionLib\DataBaseConnectionLib.csproj", "{B231054E-A28F-4C48-B1F4-396DC842175B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBControll", "DBControll\DBControll.csproj", "{2D840800-399D-4E15-B976-3E795493A27A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B231054E-A28F-4C48-B1F4-396DC842175B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B231054E-A28F-4C48-B1F4-396DC842175B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B231054E-A28F-4C48-B1F4-396DC842175B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D840800-399D-4E15-B976-3E795493A27A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D840800-399D-4E15-B976-3E795493A27A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D840800-399D-4E15-B976-3E795493A27A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D840800-399D-4E15-B976-3E795493A27A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

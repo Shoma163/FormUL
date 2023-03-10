@@ -15,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace FormUL
 {
-    public partial class PageTeacher : Page
+    /// <summary>
+    /// Логика взаимодействия для PageNavigate.xaml
+    /// </summary>
+    public partial class PageNavigate : Page
     {
-        public PageTeacher()
+        public PageNavigate()
         {
             InitializeComponent();
         }

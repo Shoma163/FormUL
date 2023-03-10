@@ -16,8 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Ink;
-using static System.Net.Mime.MediaTypeNames;
 using System.Data;
+using NpgsqlTypes;
 
 namespace FormUL
 {
@@ -26,9 +26,10 @@ namespace FormUL
         public PageRegistration()
         {
             InitializeComponent();
-
-            BindingComBoxRole();
             BindingComBoxCLass();
+            BindingComBoxRole();
+            
+            StackPanelSignUp.Visibility = Visibility.Hidden;
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
@@ -42,41 +43,14 @@ namespace FormUL
             var class1 = ClassSignUp.Text.Trim();
             Connection.InsertTableAccount(new ClassAccount(login, password, firstName, lastName, patronymic, role, class1));
 
-        }
-        public void goToPageTeather()
-        {
-            AppFrame.Navigate(new PageTeacher());
-        }
-
-        public void BindingComBoxRole()
-        {
-            Binding binding = new Binding(); 
-            binding.Source = Connection.roles;
-            RoleSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
-            //Connection.SelectTableRole();
-            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Login\",\"Password\",\"FirstName\",\"LastName\",\"Patronymic\", \"Role\",\"Class\" FROM \"Account\"");
-            NpgsqlDataReader result = cmd.ExecuteReader();
-
-            if (result.HasRows)
+            switch (role)
             {
-                while (result.Read())
-                {
-                    Connection.accounts.Add(new ClassAccount(result.GetString(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4), result.GetString(5), result.GetString(6)));
-                }
-
-                string role = result.GetString(5);
-
-                result.Close();
-
-                switch (role)
-                {
-                    case "Teacher":
-                        Frame.goToPageTeather();
-                        break;
-                    case "Student":
-
-                        break;
-                }
+                case "Teacher":
+                    NavigationService.Navigate(new PageTeacher());
+                    break;
+                case "Student":
+                    NavigationService.Navigate(new PageNavigate());
+                    break;
             }
         }
 
@@ -86,6 +60,52 @@ namespace FormUL
             binding.Source = Connection.classStudents;
             ClassSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableClass();
+        }
+
+        public void BindingComBoxRole()
+        {
+            Binding binding = new Binding();
+            binding.Source = Connection.roles;
+            RoleSignUp.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            Connection.SelectTableRole();
+        }
+
+        private void SignInButton(object sender, RoutedEventArgs e)
+        {
+
+            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Login\",\"Password\",\"FirstName\",\"LastName\",\"Patronymic\", \"Role\",\"Class\" FROM \"Account\"" +
+                "WHERE \"Login\" = @log AND \"Password\" = @pass");
+            cmd.Parameters.AddWithValue("@log", NpgsqlDbType.Varchar, LoginSignIn.Text.Trim());
+            cmd.Parameters.AddWithValue("@pass", NpgsqlDbType.Varchar, PasswordsignIn.Password.Trim());
+            NpgsqlDataReader result = cmd.ExecuteReader();
+
+            if (result.HasRows)
+            {
+                result.Read();
+                string role = result.GetString(5);
+
+                switch (role)
+                {
+                    case "Teacher":
+                        NavigationService.Navigate(new PageTeacher());
+                        break;
+                    case "Student":
+                        NavigationService.Navigate(new PageNavigate());
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+            result.Close();
+
+        }
+
+        private void SignUpVisible(object sender, RoutedEventArgs e)
+        {
+            StackPanelSignIn.Visibility = Visibility.Hidden;
+            StackPanelSignUp.Visibility = Visibility.Visible;
         }
     }
 }

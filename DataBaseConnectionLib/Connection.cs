@@ -46,11 +46,24 @@ namespace DataBaseConnectionLib
 
             if (result.HasRows)
             {
-
-                result.Read();
                 while (result.Read())
                 {
-                    Connection.roles.Add(new ClassRole(result.GetString(0)));
+                    roles.Add(new ClassRole(result.GetString(0)));
+                }
+                result.Close();
+            }
+        }
+
+        public static void SelectTableClass()
+        {
+            NpgsqlCommand cmd = GetCommand("SELECT \"ClassName\" FROM \"Class\"");
+            NpgsqlDataReader result = cmd.ExecuteReader();
+
+            if (result.HasRows)
+            {
+                while (result.Read())
+                {
+                    classStudents.Add(new ClassStudent(result.GetString(0)));
                 }
                 result.Close();
             }
@@ -68,19 +81,10 @@ namespace DataBaseConnectionLib
                     accounts.Add(new ClassAccount(result.GetString(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4), result.GetString(5), result.GetString(6)));
                 }
 
-                string role = result.GetString(5);
-
+                
                 result.Close();
 
-                switch (role)
-                {
-                    case "Teacher":
-                        goToPageTeather();
-                        break;
-                    case "Student":
-
-                        break;
-                }
+                
             }
         }
 
@@ -116,20 +120,7 @@ namespace DataBaseConnectionLib
             }
         }
 
-        public static void SelectTableClass()
-        {
-            NpgsqlCommand cmd = GetCommand("SELECT \"ClassName\" FROM \"Class\"");
-            NpgsqlDataReader result = cmd.ExecuteReader();
 
-            if (result.HasRows)
-            {
-                while (result.Read())
-                {
-                    classStudents.Add(new ClassStudent(result.GetString(0)));
-                }
-                result.Close();
-            }
-        }
 
         public static void SelectTableForm()
         {
