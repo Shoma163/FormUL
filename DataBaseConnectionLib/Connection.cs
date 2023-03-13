@@ -12,7 +12,7 @@ using NpgsqlTypes;
 
 namespace DataBaseConnectionLib
 {
-    public class Connection 
+    public class Connection
     {
         public static NpgsqlConnection connection;
         public static void Connect(string host, string port, string user, string pass, string database)
@@ -78,13 +78,30 @@ namespace DataBaseConnectionLib
             {
                 while (result.Read())
                 {
-                    accounts.Add(new ClassAccount(result.GetString(0), result.GetString(1), result.GetString(2), result.GetString(3), result.GetString(4), result.GetString(5), result.GetString(6)));
+                    string @class = null;
+
+                    if (!result.IsDBNull(6))
+                    {
+                        @class = result.GetString(6);
+                    }
+
+                    accounts.Add(new ClassAccount()
+                    {
+                        Login = result.GetString(0),
+                        Password = result.GetString(1),
+                        FirstName = result.GetString(2),
+                        LastName = result.GetString(3),
+                        Patronymic = result.GetString(4),
+                        Role = result.GetString(5),
+                        Class = @class,
+                    });
+
                 }
 
-                
+
                 result.Close();
 
-                
+
             }
         }
 
@@ -114,7 +131,7 @@ namespace DataBaseConnectionLib
                 while (result.Read())
                 {
                     JsonObject contentQuestion = JsonSerializer.Deserialize<JsonObject>(result.GetString(0));
-                    questions.Add(new ClassQuestion(result.GetInt32(0),contentQuestion, result.GetInt32(2), result.GetString(3)));
+                    questions.Add(new ClassQuestion(result.GetInt32(0), contentQuestion, result.GetInt32(2), result.GetString(3)));
                 }
                 result.Close();
             }
@@ -131,7 +148,7 @@ namespace DataBaseConnectionLib
             {
                 while (result.Read())
                 {
-                    forms.Add(new ClassForm(result.GetInt32(0),result.GetString(1), result.GetString(2))); 
+                    forms.Add(new ClassForm(result.GetInt32(0), result.GetString(1), result.GetString(2)));
                 }
                 result.Close();
             }
@@ -162,7 +179,15 @@ namespace DataBaseConnectionLib
             cmd.Parameters.AddWithValue("@lastNameParm", NpgsqlDbType.Varchar, classAccount.LastName);
             cmd.Parameters.AddWithValue("@patronymicParm", NpgsqlDbType.Varchar, classAccount.Patronymic);
             cmd.Parameters.AddWithValue("@roleParm", NpgsqlDbType.Varchar, classAccount.Role);
-            cmd.Parameters.AddWithValue("@classParm", NpgsqlDbType.Varchar, classAccount.Class);
+            if (classAccount.Class == null)
+            {
+                cmd.Parameters.AddWithValue("@classParm", NpgsqlDbType.Varchar, DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@classParm", NpgsqlDbType.Varchar, classAccount.Class);
+            }
+
 
             int result = cmd.ExecuteNonQuery();
 

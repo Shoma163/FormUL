@@ -20,10 +20,10 @@
                 <Label HorizontalAlignment="Center" Content="Вход" FontWeight="Bold" FontSize="24" ></Label>
 
                 <Label Margin="10 0 10 0" Content="Логин"></Label>
-                <TextBox Margin="15 0 15 0"  Name="Log"></TextBox>
+                <TextBox Margin="15 0 15 0"  Name="LoginSignIn"></TextBox>
 
                 <Label Margin="10 0 10 0" Content="Пароль"></Label>
-                <PasswordBox Margin="15 0 15 0" Name="Pass"></PasswordBox>
+                <PasswordBox Margin="15 0 15 0" Name="PasswordSignIn"></PasswordBox>
 
                 <DockPanel LastChildFill="True" HorizontalAlignment="Center">
                     <Button DockPanel.Dock="Left" Width="120" Content="Sign in" Margin="15"  Background="White" Click="SignInButton"></Button>
@@ -56,10 +56,10 @@
 
 
                 <Label Margin="10 0 10 0" Content="Статус"></Label>
-                <ComboBox Margin="15 0 15 0"  Name="RoleSignUp" DisplayMemberPath="Name"></ComboBox>
+                <ComboBox Margin="15 0 15 0"  Name="RoleSignUp" DisplayMemberPath="Name" SelectionChanged="RoleSignUp_SelectionChanged"></ComboBox>
 
-                <Label Margin="10 0 10 0" Content="Класс"></Label>
-                <ComboBox Margin="15 0 15 0" Name="ClassSignUp" DisplayMemberPath="ClassName"></ComboBox>
+                <Label Margin="10 0 10 0" Content="Класс" Name="LabelClass"></Label>
+                <ComboBox Margin="15 0 15 0" Name="ClassSignUp" DisplayMemberPath="ClassName" ></ComboBox>
 
 
                 <Button Content="Sign Up" HorizontalAlignment="Center" Margin="15" Width="200" Background="White" Click="RegisterClick" ></Button>

@@ -28,6 +28,7 @@ namespace FormUL
             InitializeComponent();
             BindingComBoxCLass();
             BindingComBoxRole();
+
             
             StackPanelSignUp.Visibility = Visibility.Hidden;
         }
@@ -41,6 +42,11 @@ namespace FormUL
             var patronymic = PatronymicSignUp.Text.Trim();
             var role = RoleSignUp.Text.Trim();
             var class1 = ClassSignUp.Text.Trim();
+
+            if (class1.Length == 0)
+            {
+                class1 = null;
+            }
             Connection.InsertTableAccount(new ClassAccount(login, password, firstName, lastName, patronymic, role, class1));
 
             switch (role)
@@ -76,7 +82,7 @@ namespace FormUL
             NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Login\",\"Password\",\"FirstName\",\"LastName\",\"Patronymic\", \"Role\",\"Class\" FROM \"Account\"" +
                 "WHERE \"Login\" = @log AND \"Password\" = @pass");
             cmd.Parameters.AddWithValue("@log", NpgsqlDbType.Varchar, LoginSignIn.Text.Trim());
-            cmd.Parameters.AddWithValue("@pass", NpgsqlDbType.Varchar, PasswordsignIn.Password.Trim());
+            cmd.Parameters.AddWithValue("@pass", NpgsqlDbType.Varchar, PasswordSignIn.Password.Trim());
             NpgsqlDataReader result = cmd.ExecuteReader();
 
             if (result.HasRows)
@@ -93,19 +99,41 @@ namespace FormUL
                         NavigationService.Navigate(new PageNavigate());
                         break;
                 }
+
             }
             else
             {
                 MessageBox.Show("Error");
             }
-            result.Close();
+                result.Close();
 
-        }
+            }
 
         private void SignUpVisible(object sender, RoutedEventArgs e)
         {
             StackPanelSignIn.Visibility = Visibility.Hidden;
             StackPanelSignUp.Visibility = Visibility.Visible;
+        }
+
+
+        private void RoleSignUp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ClassRole role = RoleSignUp.SelectedItem as ClassRole;
+
+            switch (role.Name)
+            {
+                case "Teacher":
+                    ClassSignUp.SelectedItem = null;
+                    ClassSignUp.IsEnabled = false;
+                    ClassSignUp.Visibility = Visibility.Collapsed;
+                    LabelClass.Visibility = Visibility.Collapsed;
+                    break;
+                case "Student":
+                    ClassSignUp.IsEnabled = true;
+                    ClassSignUp.Visibility = Visibility.Visible;
+                    LabelClass.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }
