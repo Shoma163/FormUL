@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseConnectionLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,19 @@ namespace FormUL
         public PageTeacher()
         {
             InitializeComponent();
+
+            cbBindingTypeQuestion();
         }
+
+
+        public void cbBindingTypeQuestion()
+        {
+            Binding binding= new Binding();
+            binding.Source = Connection.classQuestionTypes;
+            cbCteateTypeQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            Connection.SelectTableTypeQuestion();
+        }
+
+
     }
 }

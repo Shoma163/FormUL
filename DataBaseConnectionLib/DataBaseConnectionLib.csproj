@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="ClassAccount.cs" />
     <Compile Include="ClassAnswer.cs" />
+    <Compile Include="ClassContent.cs" />
     <Compile Include="ClassForm.cs" />
     <Compile Include="ClassQuestion.cs" />
     <Compile Include="ClassRole.cs" />

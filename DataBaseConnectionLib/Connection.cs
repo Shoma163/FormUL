@@ -156,7 +156,7 @@ namespace DataBaseConnectionLib
 
         public static void SelectTableTypeQuestion()
         {
-            NpgsqlCommand cmd = GetCommand("SELECT \"NameQuestionType\" FROM \"ClassQuestionType\"");
+            NpgsqlCommand cmd = GetCommand("SELECT \"NameQuestionType\" FROM \"QuestionType\"");
             NpgsqlDataReader result = cmd.ExecuteReader();
 
             if (result.HasRows)

@@ -9,7 +9,6 @@ namespace DataBaseConnectionLib
 {
     public class ClassAccount
     {
-        private string class1;
 
         public ClassAccount() { }
         public ClassAccount(string login, string password, string firstName, string lastName, string patronymic, string role, string class1)
