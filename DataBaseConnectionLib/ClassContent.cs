@@ -8,6 +8,7 @@ namespace DataBaseConnectionLib
 {
     public class ClassContent
     {
-        
+        public string Text { get; set; }
+        public string[] Variants { get; set; }
     }
 }

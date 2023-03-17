@@ -98,11 +98,7 @@ namespace DataBaseConnectionLib
                     });
 
                 }
-
-
                 result.Close();
-
-
             }
         }
 
@@ -131,7 +127,7 @@ namespace DataBaseConnectionLib
             {
                 while (result.Read())
                 {
-                    JsonObject contentQuestion = JsonSerializer.Deserialize<JsonObject>(result.GetString(0));
+                    ClassContent contentQuestion = JsonSerializer.Deserialize<ClassContent>(result.GetString(0));
                     questions.Add(new ClassQuestion(result.GetInt32(0), contentQuestion, result.GetInt32(2), result.GetString(3)));
                 }
                 result.Close();
@@ -188,9 +184,7 @@ namespace DataBaseConnectionLib
             {
                 cmd.Parameters.AddWithValue("@classParm", NpgsqlDbType.Varchar, classAccount.Class);
             }
-
-
-            int result = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
         }
     }

@@ -49,15 +49,8 @@ namespace FormUL
             }
             Connection.InsertTableAccount(new ClassAccount(login, password, firstName, lastName, patronymic, role, class1));
 
-            switch (role)
-            {
-                case "Teacher":
-                    NavigationService.Navigate(new PageNavigate());
-                    break;
-                case "Student":
-                    NavigationService.Navigate(new PageNavigate());
-                    break;
-            }
+            StackPanelSignIn.Visibility = Visibility.Visible;
+            StackPanelSignUp.Visibility = Visibility.Hidden;
         }
 
         public void BindingComBoxCLass()
@@ -99,15 +92,13 @@ namespace FormUL
                         NavigationService.Navigate(new PageNavigate());
                         break;
                 }
-
             }
             else
             {
                 MessageBox.Show("Error");
             }
-                result.Close();
-
-            }
+            result.Close();
+        }
 
         private void SignUpVisible(object sender, RoutedEventArgs e)
         {

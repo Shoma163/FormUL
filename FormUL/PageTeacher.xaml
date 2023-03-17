@@ -19,7 +19,7 @@
         
         <Grid Margin="5 40 5 10">
             <ScrollViewer>
-                <ListBox></ListBox>
+                <ListBox Name="lbListQuestion"></ListBox>
             </ScrollViewer>
         </Grid>
 

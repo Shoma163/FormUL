@@ -1,6 +1,7 @@
 ﻿using DataBaseConnectionLib;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,16 @@ namespace FormUL
 {
     public partial class PageTeacher : Page
     {
+        private ObservableCollection<ClassQuestion> questions { get; set; }
+        private ObservableCollection<string> variants { get; set; }
         public PageTeacher()
         {
             InitializeComponent();
+
+            variants= new ObservableCollection<string>();
+            questions = new ObservableCollection<ClassQuestion>();
+
+            lbBindingVariantAnswer();
 
             cbBindingTypeQuestion();
         }
@@ -34,6 +42,36 @@ namespace FormUL
             Connection.SelectTableTypeQuestion();
         }
 
+        public void lbBindingVariantAnswer()
+        {
+            Binding binding = new Binding();
+            binding.Source = variants;
+            lbCreateContent.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+        }
 
+        public void BindingListQuestion()
+        {
+
+        }
+
+        public void CreateQuestion()
+        {
+            string text = tbCreateTextQuestion.Text.Trim();
+
+            ClassQuestion question = new ClassQuestion();
+            ClassContent content = new ClassContent();
+            content.Text = text;
+
+            var questionType = cbCteateTypeQuestion.SelectedItem.ToString();
+            if (questionType == "Выбор") {
+                content.Variants = variants.ToArray();
+            }
+
+            question.TypeQuestion = questionType;
+            question.Content = content;
+
+            questions.Add(question);
+
+        }
     }
 }

@@ -18,7 +18,7 @@
         <Label Content="Созданные анкеты" FontWeight="Bold" FontSize="16" Margin="5"></Label>
         <Grid Margin="5 40 5 5">
             <ScrollViewer >
-                <ListBox></ListBox>
+                <ListBox Name="lbListForm"></ListBox>
             </ScrollViewer>
         </Grid>
 
@@ -27,6 +27,7 @@
         </Grid>
         
         <StackPanel Grid.Column="2">
+            <Label Content="Название анкеты" Margin="6 10 10 0" FontSize="16" FontWeight="Bold"></Label>
             <TextBox Margin="10 10 10 0" Name="tbCreateForm"></TextBox>
             <Button Margin="10" Content="Создание анкеты" Background="White" Click="Button_Click"></Button>
         </StackPanel>
