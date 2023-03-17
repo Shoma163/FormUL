@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace FormUL
 {
-    /// <summary>
-    /// Логика взаимодействия для PageNavigate.xaml
-    /// </summary>
     public partial class PageNavigate : Page
     {
         public PageNavigate()
@@ -43,27 +40,13 @@ namespace FormUL
             }
         }
 
-        public void SelectTableForm()
-        {
-            NpgsqlCommand cmd = Connection.GetCommand("SELECT \"Name\",\"Teacher\" FROM \"Form\"");
-            NpgsqlDataReader result = cmd.ExecuteReader();
-
-            if (result.HasRows)
-            {
-                while (result.Read())
-                {
-                    Connection.forms.Add(new ClassForm(result.GetString(1), result.GetString(2)));
-                }
-                result.Close();
-            }
-        }
 
         public void BindingListForm()
         {
             Binding binding = new Binding();
             binding.Source = Connection.forms;
             lbListForm.SetBinding(ItemsControl.ItemsSourceProperty, binding);
-            SelectTableForm();
+            Connection.SelectTableForm();
         }
     }
 }
