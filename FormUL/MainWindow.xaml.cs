@@ -26,7 +26,7 @@ namespace FormUL
 
             Connection.Connect("10.14.206.28", "5432", "student", "1234", "db_FormUL");
 
-            AppFrame.Navigate(new PageTeacher());
+            AppFrame.Navigate(new PageRegistration());
 
             DataContext = this;
         }

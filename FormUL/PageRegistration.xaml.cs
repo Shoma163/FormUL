@@ -52,7 +52,7 @@ namespace FormUL
             switch (role)
             {
                 case "Teacher":
-                    NavigationService.Navigate(new PageTeacher());
+                    NavigationService.Navigate(new PageNavigate());
                     break;
                 case "Student":
                     NavigationService.Navigate(new PageNavigate());
@@ -89,11 +89,11 @@ namespace FormUL
             {
                 result.Read();
                 string role = result.GetString(5);
-
+                Connection.teacher = result.GetString(0);
                 switch (role)
                 {
                     case "Teacher":
-                        NavigationService.Navigate(new PageTeacher());
+                        NavigationService.Navigate(new PageNavigate());
                         break;
                     case "Student":
                         NavigationService.Navigate(new PageNavigate());

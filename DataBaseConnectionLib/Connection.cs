@@ -14,6 +14,7 @@ namespace DataBaseConnectionLib
 {
     public class Connection
     {
+        public static string teacher { get; set; }
         public static NpgsqlConnection connection;
         public static void Connect(string host, string port, string user, string pass, string database)
         {
@@ -141,14 +142,14 @@ namespace DataBaseConnectionLib
 
         public static void SelectTableForm()
         {
-            NpgsqlCommand cmd = GetCommand("SELECT \"id\",\"Name\",\"Teacher\" FROM \"Form\"");
+            NpgsqlCommand cmd = GetCommand("SELECT \"Name\",\"Teacher\" FROM \"Form\"");
             NpgsqlDataReader result = cmd.ExecuteReader();
 
             if (result.HasRows)
             {
                 while (result.Read())
                 {
-                    forms.Add(new ClassForm(result.GetInt32(0), result.GetString(1), result.GetString(2)));
+                    forms.Add(new ClassForm(result.GetString(1), result.GetString(2)));
                 }
                 result.Close();
             }

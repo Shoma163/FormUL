@@ -10,10 +10,25 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="1.5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-       
+        
+        <Label Content="Созданные анкеты" FontWeight="Bold" FontSize="16" Margin="5"></Label>
+        <Grid Margin="5 40 5 5">
+            <ScrollViewer >
+                <ListBox></ListBox>
+            </ScrollViewer>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Border BorderBrush="Black" BorderThickness="2" Margin="4"></Border>
+        </Grid>
+        
+        <StackPanel Grid.Column="2">
+            <TextBox Margin="10 10 10 0" Name="tbCreateForm"></TextBox>
+            <Button Margin="10" Content="Создание анкеты" Background="White" Click="Button_Click"></Button>
+        </StackPanel>
     </Grid>
 </Page>
