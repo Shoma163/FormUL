@@ -8,8 +8,9 @@ namespace DataBaseConnectionLib
 {
     public class ClassForm
     {
-        public ClassForm(string name, string teacher)
+        public ClassForm(int id ,string name, string teacher)
         {
+            this.id = id;
             Name = name;
             Teacher = teacher;
         }

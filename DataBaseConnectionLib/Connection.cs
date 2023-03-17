@@ -51,8 +51,9 @@ namespace DataBaseConnectionLib
                 {
                     roles.Add(new ClassRole(result.GetString(0)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void SelectTableClass()
@@ -66,8 +67,9 @@ namespace DataBaseConnectionLib
                 {
                     classStudents.Add(new ClassStudent(result.GetString(0)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void SelectTableAccount()
@@ -98,8 +100,9 @@ namespace DataBaseConnectionLib
                     });
 
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void SelectTableAnswer()
@@ -114,8 +117,9 @@ namespace DataBaseConnectionLib
                     JsonObject contentAnswer = JsonSerializer.Deserialize<JsonObject>(result.GetString(3));
                     answers.Add(new ClassAnswer(result.GetInt32(0), result.GetString(1), result.GetString(2), contentAnswer, result.GetDateTime(4)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void SelectTableQuestion()
@@ -130,8 +134,9 @@ namespace DataBaseConnectionLib
                     ClassContent contentQuestion = JsonSerializer.Deserialize<ClassContent>(result.GetString(0));
                     questions.Add(new ClassQuestion(result.GetInt32(0), contentQuestion, result.GetInt32(2), result.GetString(3)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
 
@@ -145,10 +150,11 @@ namespace DataBaseConnectionLib
             {
                 while (result.Read())
                 {
-                    forms.Add(new ClassForm(result.GetString(1), result.GetString(2)));
+                    forms.Add(new ClassForm(result.GetString(0), result.GetString(1)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void SelectTableTypeQuestion()
@@ -162,8 +168,9 @@ namespace DataBaseConnectionLib
                 {
                     classQuestionTypes.Add(new ClassQuestionType(result.GetString(0)));
                 }
-                result.Close();
+                
             }
+            result.Close();
         }
 
         public static void InsertTableAccount(ClassAccount classAccount)

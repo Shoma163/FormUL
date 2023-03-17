@@ -18,7 +18,7 @@
         <Label Content="Созданные анкеты" FontWeight="Bold" FontSize="16" Margin="5"></Label>
         <Grid Margin="5 40 5 5">
             <ScrollViewer >
-                <ListBox Name="lbListForm"></ListBox>
+                <ListBox Name="lbListForm" ItemTemplate="{StaticResource ListForm}"></ListBox>
             </ScrollViewer>
         </Grid>
 

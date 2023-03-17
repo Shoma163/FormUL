@@ -83,6 +83,7 @@ namespace FormUL
                 result.Read();
                 string role = result.GetString(5);
                 Connection.teacher = result.GetString(0);
+                result.Close();
                 switch (role)
                 {
                     case "Teacher":
@@ -92,6 +93,7 @@ namespace FormUL
                         NavigationService.Navigate(new PageNavigate());
                         break;
                 }
+                return;
             }
             else
             {

@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:FormUL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DataTemplate x:Key="ListForm">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    
+                    
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>
