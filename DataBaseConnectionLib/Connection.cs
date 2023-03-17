@@ -143,14 +143,14 @@ namespace DataBaseConnectionLib
 
         public static void SelectTableForm()
         {
-            NpgsqlCommand cmd = GetCommand("SELECT \"Name\",\"Teacher\" FROM \"Form\"");
+            NpgsqlCommand cmd = GetCommand("SELECT \"id\",\"Name\",\"Teacher\" FROM \"Form\"");
             NpgsqlDataReader result = cmd.ExecuteReader();
 
             if (result.HasRows)
             {
                 while (result.Read())
                 {
-                    forms.Add(new ClassForm(result.GetString(0), result.GetString(1)));
+                    forms.Add(new ClassForm(result.GetInt32(0), result.GetString(1), result.GetString(2)));
                 }
                 
             }
