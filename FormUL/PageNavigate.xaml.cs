@@ -48,5 +48,13 @@ namespace FormUL
             lbListForm.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableForm();
         }
+
+        private void lbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ClassForm classForm = lbListForm.SelectedItem as ClassForm;
+
+            Control.PageTeacher.SetFormId(classForm.id);
+            NavigationService.Navigate(Control.PageTeacher);
+        }
     }
 }

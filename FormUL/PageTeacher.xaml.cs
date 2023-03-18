@@ -19,6 +19,8 @@ namespace FormUL
 {
     public partial class PageTeacher : Page
     {
+
+        private int FormId;
         private ObservableCollection<ClassQuestion> questions { get; set; }
         private ObservableCollection<string> variants { get; set; }
         public PageTeacher()
@@ -62,16 +64,43 @@ namespace FormUL
             ClassContent content = new ClassContent();
             content.Text = text;
 
-            var questionType = cbCteateTypeQuestion.SelectedItem.ToString();
-            if (questionType == "Выбор") {
+            ClassQuestionType questionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
+            if (questionType.NameQuestionType == "Выбор") {
                 content.Variants = variants.ToArray();
             }
 
-            question.TypeQuestion = questionType;
+            question.TypeQuestion = questionType.NameQuestionType;
             question.Content = content;
+            question.Form = FormId;
 
             questions.Add(question);
+            
+            Connection.InsertQuestion(question);
 
+            Connection.questions.Add(question);
+
+        }
+
+        public void SetFormId(int id)
+        {
+            FormId = id;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateQuestion();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var variantQuestion = tbCteateVariantQuestion.Text.Trim();
+
+            if (variantQuestion.Length == 0)
+            {
+                return;
+            }
+            variants.Add(variantQuestion);
+            tbCteateVariantQuestion.Clear();
         }
     }
 }

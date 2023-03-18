@@ -7,12 +7,25 @@
         <DataTemplate x:Key="ListForm">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    
-                    
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Margin="10" HorizontalAlignment="Center">
+                    <Run Text="{Binding id}" FontWeight="Bold" FontSize="14"></Run>
+                </TextBlock>
+
+                <TextBlock Grid.Column="1" Margin="2">
+                    <Run Text="Название анкеты: "></Run>
+                    <Run Text="{Binding Name}"></Run>
+                    <LineBreak></LineBreak>
+                    <Grid>
+                        <Border BorderBrush="#bdbdbd" BorderThickness="0.5"  Width="350px"></Border>
+                    </Grid>
+                    <LineBreak></LineBreak>
+                    <Run Text="Преподаватель: "></Run>
+                    <Run Text="{Binding Teacher}"></Run>
+                </TextBlock>
             </Grid>
         </DataTemplate>
     </Application.Resources>
