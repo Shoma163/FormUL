@@ -33,6 +33,8 @@ namespace FormUL
             lbBindingVariantAnswer();
 
             cbBindingTypeQuestion();
+
+            BindingListQuestion();
         }
 
 
@@ -53,7 +55,10 @@ namespace FormUL
 
         public void BindingListQuestion()
         {
-
+            Binding binding = new Binding();
+            binding.Source = Connection.questions;
+            lbListQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            Connection.SelectTableQuestion();
         }
 
         public void CreateQuestion()
@@ -86,12 +91,14 @@ namespace FormUL
             FormId = id;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCreateQuestion(object sender, RoutedEventArgs e)
         {
             CreateQuestion();
+            cbCteateTypeQuestion.SelectedItem = null;
+            tbCreateTextQuestion.Clear();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void AddVariantQuestion(object sender, RoutedEventArgs e)
         {
             var variantQuestion = tbCteateVariantQuestion.Text.Trim();
 
@@ -102,5 +109,6 @@ namespace FormUL
             variants.Add(variantQuestion);
             tbCteateVariantQuestion.Clear();
         }
+
     }
 }

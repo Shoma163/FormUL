@@ -18,9 +18,7 @@
         <Label Content="Список Вопросов" FontWeight="Bold" Margin="15"></Label>
         
         <Grid Margin="5 40 5 10">
-            <ScrollViewer>
                 <ListBox Name="lbListQuestion"></ListBox>
-            </ScrollViewer>
         </Grid>
 
         <Grid Margin="0 10 0 10" Grid.Column="1" Grid.ColumnSpan="2" Background="Black">
@@ -65,7 +63,7 @@
                     <Label Content="Тип ответа" FontSize="11"></Label>
                     <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType"></ComboBox>
                     
-                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="Button_Click"></Button>
+                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"></Button>
                     <Label Content="- - - - - - - - - - - - - - - - - - - -"></Label>
                     
                     <Label Content="Текст варианта ответа" FontSize="11"></Label>
@@ -74,7 +72,7 @@
                     <Label Content="Варианты ответов" FontSize="11"></Label>
                     <ListBox Height="100" Name="lbCreateContent"></ListBox>
 
-                    <Button Content="Добавить вариант" Background="White" Margin=" 0 10 0 0" Click="Button_Click_1"></Button>
+                    <Button Content="Добавить вариант" Background="White" Margin=" 0 10 0 0" Click="AddVariantQuestion"></Button>
                 </StackPanel>
             </StackPanel>
         </Grid>

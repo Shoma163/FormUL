@@ -132,7 +132,7 @@ namespace DataBaseConnectionLib
             {
                 while (result.Read())
                 {
-                    ClassContent contentQuestion = JsonSerializer.Deserialize<ClassContent>(result.GetString(0));
+                    ClassContent contentQuestion = JsonSerializer.Deserialize<ClassContent>(result.GetString(1));
                     questions.Add(new ClassQuestion(result.GetInt32(0), contentQuestion, result.GetInt32(2), result.GetString(3)));
                 }
                 
