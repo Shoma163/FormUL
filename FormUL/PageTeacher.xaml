@@ -15,7 +15,7 @@
             <ColumnDefinition Width="1.2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <Label Content="Список Вопросов" FontWeight="Bold" Margin="15"></Label>
+        <Label Content="Список  Вопросов" FontWeight="Bold" Margin="15"></Label>
         
         <Grid Margin="5 40 5 10">
                 <ListBox Name="lbListQuestion"></ListBox>
