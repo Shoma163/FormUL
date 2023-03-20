@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,15 @@ namespace FormUL
             cbBindingTypeQuestion();
 
             BindingListQuestion();
-        }
 
+            lTextVariant.Visibility = Visibility.Collapsed;
+            tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
+            VariantAnswer.Visibility = Visibility.Collapsed;
+            lbCreateContent.Visibility = Visibility.Collapsed;
+            ButtonAddVariant.Visibility = Visibility.Collapsed;
+
+            
+        }
 
         public void cbBindingTypeQuestion()
         {
@@ -72,6 +80,7 @@ namespace FormUL
             ClassQuestionType questionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
             if (questionType.NameQuestionType == "Выбор") {
                 content.Variants = variants.ToArray();
+               
             }
 
             question.TypeQuestion = questionType.NameQuestionType;
@@ -85,6 +94,7 @@ namespace FormUL
             Connection.questions.Add(question);
 
         }
+
 
         public void SetFormId(int id)
         {
@@ -110,5 +120,27 @@ namespace FormUL
             tbCteateVariantQuestion.Clear();
         }
 
+        private void cbCteateTypeQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
+
+            switch (classQuestionType.NameQuestionType)
+            {
+                case "Ввод":
+                    lTextVariant.Visibility = Visibility.Collapsed;
+                    tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
+                    VariantAnswer.Visibility = Visibility.Collapsed;
+                    lbCreateContent.Visibility = Visibility.Collapsed;
+                    ButtonAddVariant.Visibility = Visibility.Collapsed;
+                    break;
+                case "Выбор":
+                    lTextVariant.Visibility = Visibility.Visible;
+                    tbCteateVariantQuestion.Visibility = Visibility.Visible;
+                    VariantAnswer.Visibility = Visibility.Visible;
+                    lbCreateContent.Visibility = Visibility.Visible;
+                    ButtonAddVariant.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
     }
 }

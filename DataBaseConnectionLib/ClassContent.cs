@@ -10,5 +10,21 @@ namespace DataBaseConnectionLib
     {
         public string Text { get; set; }
         public string[] Variants { get; set; }
+
+        public string VariantsAsString
+        {
+            get
+            {
+                if (Variants != null)
+                {
+                    return string.Join(", ", Variants);
+                }
+                return "";
+            }
+            set
+            {
+
+            }
+        }
     }
 }

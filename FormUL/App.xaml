@@ -28,5 +28,37 @@
                 </TextBlock>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="ListQuestion">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.RowSpan="2"  Margin="10 0 15 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="{Binding id}" FontWeight="Bold" FontSize="14"></Run>
+                </TextBlock>
+
+                <TextBlock Grid.Column="1" Grid.Row="0">
+                    <Run Text="ID анкеты: "></Run>
+                    <Run Text="{Binding Form}" FontSize="12" FontWeight="Bold"></Run>
+                </TextBlock>
+
+                <TextBlock Grid.Row="1" Grid.Column="1">
+                    <Run Text="Вопрос: "></Run>
+                    <Run Text="{Binding Content.Text}"></Run>
+                    <LineBreak></LineBreak>
+                    <Run Text="Варианты: "></Run>
+                    <Run Text="{Binding Content.VariantsAsString}"></Run>
+                </TextBlock>
+
+            </Grid>
+        </DataTemplate>
     </Application.Resources>
 </Application>

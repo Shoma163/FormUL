@@ -15,10 +15,10 @@
             <ColumnDefinition Width="1.2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <Label Content="Список  Вопросов" FontWeight="Bold" Margin="15"></Label>
+        <Label Content="Список Вопросов" FontWeight="Bold" Margin="15"></Label>
         
         <Grid Margin="5 40 5 10">
-                <ListBox Name="lbListQuestion"></ListBox>
+            <ListView ItemTemplate="{StaticResource ListQuestion}" Name="lbListQuestion"></ListView>
         </Grid>
 
         <Grid Margin="0 10 0 10" Grid.Column="1" Grid.ColumnSpan="2" Background="Black">
@@ -61,18 +61,18 @@
                     <TextBox Name="tbCreateTextQuestion"></TextBox>
                     
                     <Label Content="Тип ответа" FontSize="11"></Label>
-                    <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType"></ComboBox>
+                    <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType" SelectionChanged="cbCteateTypeQuestion_SelectionChanged"></ComboBox>
                     
                     <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"></Button>
                     <Label Content="- - - - - - - - - - - - - - - - - - - -"></Label>
-                    
-                    <Label Content="Текст варианта ответа" FontSize="11"></Label>
+
+                    <Label Content="Текст варианта ответа" FontSize="11" Name="lTextVariant"></Label>
                     <TextBox Name="tbCteateVariantQuestion"></TextBox>
-                    
-                    <Label Content="Варианты ответов" FontSize="11"></Label>
+
+                    <Label Content="Варианты ответов" FontSize="11" Name="VariantAnswer"></Label>
                     <ListBox Height="100" Name="lbCreateContent"></ListBox>
 
-                    <Button Content="Добавить вариант" Background="White" Margin=" 0 10 0 0" Click="AddVariantQuestion"></Button>
+                    <Button Name="ButtonAddVariant" Content="Добавить вариант" Background="White" Margin=" 0 10 0 0" Click="AddVariantQuestion"></Button>
                 </StackPanel>
             </StackPanel>
         </Grid>
