@@ -14,7 +14,7 @@ namespace DataBaseConnectionLib
 {
     public class Connection
     {
-        public static string teacher { get; set; }
+        public static ClassAccount teacher { get; set; }
 
         public static NpgsqlConnection connection;
         public static void Connect(string host, string port, string user, string pass, string database)

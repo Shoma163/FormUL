@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -43,8 +44,25 @@ namespace FormUL
             lbCreateContent.Visibility = Visibility.Collapsed;
             ButtonAddVariant.Visibility = Visibility.Collapsed;
 
-            
         }
+
+        private void ApplyFilter()
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(lbListQuestion.ItemsSource);
+            if (view == null ) { return; }
+
+            if (view.CanFilter == true)
+            {
+                view.Filter = new Predicate<object>(o =>
+                {
+                    ClassQuestion question = o as ClassQuestion;
+                    if (question == null) return false;
+
+                    return question.Form == FormId;
+                });
+            }
+        }
+
 
         public void cbBindingTypeQuestion()
         {
@@ -99,6 +117,8 @@ namespace FormUL
         public void SetFormId(int id)
         {
             FormId = id;
+
+            ApplyFilter();
         }
 
         private void ButtonCreateQuestion(object sender, RoutedEventArgs e)
@@ -123,6 +143,7 @@ namespace FormUL
         private void cbCteateTypeQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
+            if (classQuestionType == null) { return; }
 
             switch (classQuestionType.NameQuestionType)
             {

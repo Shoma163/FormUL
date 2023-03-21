@@ -29,7 +29,7 @@ namespace FormUL
             BindingComBoxCLass();
             BindingComBoxRole();
 
-            
+
             StackPanelSignUp.Visibility = Visibility.Hidden;
         }
 
@@ -81,10 +81,17 @@ namespace FormUL
             if (result.HasRows)
             {
                 result.Read();
-                string role = result.GetString(5);
-                Connection.teacher = result.GetString(0);
+
+                Connection.teacher = new ClassAccount()
+                {
+                    Role = result.GetString(5),
+                    FirstName = result.GetString(2),
+                    LastName = result.GetString(3),
+                    Patronymic = result.GetString(4),
+                    Login = result.GetString(0),
+                };
                 result.Close();
-                switch (role)
+                switch (Connection.teacher.Role)
                 {
                     case "Teacher":
                         NavigationService.Navigate(new PageNavigate());
