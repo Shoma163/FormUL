@@ -198,11 +198,11 @@ namespace DataBaseConnectionLib
 
         public static void InsertQuestion(ClassQuestion classQuestion)
         {
-            NpgsqlCommand cmd = GetCommand("INSERT INTO \"Question\" (\"Content\", \"Form\", \"TypeQuestion\") VALUES (@question, @form, @typeQuestion) returning id");
+            NpgsqlCommand cmd = GetCommand("INSERT INTO \"Question\" (\"Content\", \"Form\", \"TypeQuestion\")" +
+                " VALUES (@question, @form, @typeQuestion) returning id");
             cmd.Parameters.AddWithValue("@question", NpgsqlDbType.Jsonb, JsonSerializer.Serialize(classQuestion.Content));
             cmd.Parameters.AddWithValue("@form", NpgsqlDbType.Integer, classQuestion.Form);
             cmd.Parameters.AddWithValue("@typeQuestion", NpgsqlDbType.Varchar, classQuestion.TypeQuestion);
-
 
 
             var result = cmd.ExecuteScalar();
