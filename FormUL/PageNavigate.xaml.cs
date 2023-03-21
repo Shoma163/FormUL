@@ -3,6 +3,7 @@ using Npgsql;
 using NpgsqlTypes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,12 +21,34 @@ namespace FormUL
 {
     public partial class PageNavigate : Page
     {
+
+        public int loginId;
         public PageNavigate()
         {
             InitializeComponent();
 
             BindingListForm();
+
+            ApplyFilterForm();
         }
+        
+        private void ApplyFilterForm()
+        {
+            ICollectionView view = CollectionViewSource.GetDefaultView(lbListForm.ItemsSource);
+            if (view == null) { return; }
+
+            if (view.CanFilter == true)
+            {
+                view.Filter = new Predicate<object>(o =>
+                {
+                    ClassAccount account = o as ClassAccount;
+                    if (account == null) return false;
+
+                    return account.Login == account.Login;
+                });
+            }
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +75,8 @@ namespace FormUL
         private void lbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClassForm classForm = lbListForm.SelectedItem as ClassForm;
+
+
 
             Control.PageTeacher.SetFormId(classForm.id);
             NavigationService.Navigate(Control.PageTeacher);
