@@ -61,7 +61,7 @@
                     <TextBox Name="tbCreateTextQuestion"></TextBox>
                     
                     <Label Content="Тип ответа" FontSize="11"></Label>
-                    <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType" SelectionChanged="cbCteateTypeQuestion_SelectionChanged"></ComboBox>
+                    <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType" SelectionChanged="CbCteateTypeQuestion_SelectionChanged"></ComboBox>
                     
                     <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"></Button>
                     <Label Content="- - - - - - - - - - - - - - - - - - - -"></Label>

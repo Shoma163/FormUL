@@ -21,8 +21,6 @@ namespace FormUL
 {
     public partial class PageNavigate : Page
     {
-
-        public int loginId;
         public PageNavigate()
         {
             InitializeComponent();
@@ -31,9 +29,10 @@ namespace FormUL
 
             ApplyFilterForm();
         }
-        
-        private void ApplyFilterForm()
+
+        public void ApplyFilterForm()
         {
+
             ICollectionView view = CollectionViewSource.GetDefaultView(lbListForm.ItemsSource);
             if (view == null) { return; }
 
@@ -41,20 +40,22 @@ namespace FormUL
             {
                 view.Filter = new Predicate<object>(o =>
                 {
-                    ClassAccount account = o as ClassAccount;
-                    if (account == null) return false;
+                    ClassForm form = o as ClassForm;
+                    if (form == null) return false;
 
-                    return account.Login == account.Login;
+                    return form.Teacher == Connection.teacher.Login;
                 });
             }
         }
+
+
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NpgsqlCommand cmd = Connection.GetCommand("INSERT INTO  \"Form\" (\"Name\",\"Teacher\") VALUES (@name, @teacher)");
             cmd.Parameters.AddWithValue("@name", NpgsqlDbType.Varchar, tbCreateForm.Text.Trim());
-            cmd.Parameters.AddWithValue("@teacher", NpgsqlDbType.Varchar, Connection.teacher);
+            cmd.Parameters.AddWithValue("@teacher", NpgsqlDbType.Varchar, Connection.teacher.Login);
 
             var result = cmd.ExecuteNonQuery();
             if (result != 0 )
@@ -72,10 +73,9 @@ namespace FormUL
             Connection.SelectTableForm();
         }
 
-        private void lbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClassForm classForm = lbListForm.SelectedItem as ClassForm;
-
 
 
             Control.PageTeacher.SetFormId(classForm.id);

@@ -17,7 +17,7 @@
         
         <Label Content="Созданные анкеты" FontWeight="Bold" FontSize="16" Margin="5"></Label>
         <Grid Margin="5 40 5 5">
-                <ListView Name="lbListForm" ItemTemplate="{StaticResource ListForm}" SelectionChanged="lbListForm_SelectionChanged"></ListView>
+                <ListView Name="lbListForm" ItemTemplate="{StaticResource ListForm}" SelectionChanged="LbListForm_SelectionChanged"></ListView>
         </Grid>
 
         <Grid Grid.Column="1">

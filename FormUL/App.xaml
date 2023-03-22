@@ -24,7 +24,7 @@
                     </Grid>
                     <LineBreak></LineBreak>
                     <Run Text="Преподаватель: "></Run>
-                    <Run Text="{Binding Teacher}"></Run>
+                    <Run Text="{Binding Login}"></Run>
                 </TextBlock>
             </Grid>
         </DataTemplate>
@@ -46,14 +46,11 @@
                 </TextBlock>
 
                 <TextBlock Grid.Column="1" Grid.Row="0">
-                    <Run Text="ID анкеты: "></Run>
-                    <Run Text="{Binding Form}" FontSize="12" FontWeight="Bold"></Run>
+                    <Run Text="Вопрос: " FontWeight="Bold"></Run>
+                    <Run Text="{Binding Content.Text}"></Run>
                 </TextBlock>
 
                 <TextBlock Grid.Row="1" Grid.Column="1">
-                    <Run Text="Вопрос: "></Run>
-                    <Run Text="{Binding Content.Text}"></Run>
-                    <LineBreak></LineBreak>
                     <Run Text="Варианты: "></Run>
                     <Run Text="{Binding Content.VariantsAsString}"></Run>
                 </TextBlock>

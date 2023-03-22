@@ -32,9 +32,9 @@ namespace FormUL
             variants= new ObservableCollection<string>();
             questions = new ObservableCollection<ClassQuestion>();
 
-            lbBindingVariantAnswer();
+            LbBindingVariantAnswer();
 
-            cbBindingTypeQuestion();
+            CbBindingTypeQuestion();
 
             BindingListQuestion();
 
@@ -64,25 +64,28 @@ namespace FormUL
         }
 
 
-        public void cbBindingTypeQuestion()
+        public void CbBindingTypeQuestion()
         {
-            Binding binding= new Binding();
-            binding.Source = Connection.classQuestionTypes;
+            Binding binding = new Binding
+            {
+                Source = Connection.classQuestionTypes
+            };
             cbCteateTypeQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableTypeQuestion();
         }
 
-        public void lbBindingVariantAnswer()
+        public void LbBindingVariantAnswer()
         {
-            Binding binding = new Binding();
-            binding.Source = variants;
+            Binding binding = new Binding
+            {
+                Source = variants
+            };
             lbCreateContent.SetBinding(ItemsControl.ItemsSourceProperty, binding);
         }
 
         public void BindingListQuestion()
         {
-            Binding binding = new Binding();
-            binding.Source = Connection.questions;
+            Binding binding = new Binding { Source = Connection.questions };
             lbListQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableQuestion();
         }
@@ -140,7 +143,7 @@ namespace FormUL
             tbCteateVariantQuestion.Clear();
         }
 
-        private void cbCteateTypeQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CbCteateTypeQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
             if (classQuestionType == null) { return; }

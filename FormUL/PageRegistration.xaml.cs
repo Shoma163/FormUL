@@ -95,6 +95,7 @@ namespace FormUL
                 {
                     case "Teacher":
                         NavigationService.Navigate(new PageNavigate());
+
                         break;
                     case "Student":
                         NavigationService.Navigate(new PageNavigate());
