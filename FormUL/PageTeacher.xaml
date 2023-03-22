@@ -63,7 +63,7 @@
                     <Label Content="Тип ответа" FontSize="11"></Label>
                     <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType" SelectionChanged="CbCteateTypeQuestion_SelectionChanged"></ComboBox>
                     
-                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"></Button>
+                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion" IsEnabled="False"></Button>
                     <Label Content="- - - - - - - - - - - - - - - - - - - -"></Label>
 
                     <Label Content="Текст варианта ответа" FontSize="11" Name="lTextVariant"></Label>
