@@ -114,6 +114,8 @@ namespace FormUL
 
             Connection.questions.Add(question);
 
+
+
         }
 
 
@@ -129,6 +131,7 @@ namespace FormUL
             CreateQuestion();
             cbCteateTypeQuestion.SelectedItem = null;
             tbCreateTextQuestion.Clear();
+            variants.Clear();
         }
 
         private void AddVariantQuestion(object sender, RoutedEventArgs e)

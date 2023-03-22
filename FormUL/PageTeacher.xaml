@@ -28,7 +28,7 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="1 0 0 0" Background="White">
+            <StackPanel Grid.Column="0" Margin="1 0 0 0" Background="White" IsEnabled="False">
                 <StackPanel Margin="5">
                     <Label Content="Изменить вопрос" FontWeight="Bold"></Label>
 
