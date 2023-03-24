@@ -21,7 +21,6 @@ namespace FormUL
 {
     public partial class PageTeacher : Page
     {
-
         private int FormId;
         private ObservableCollection<ClassQuestion> questions { get; set; }
         private ObservableCollection<string> variants { get; set; }
@@ -38,12 +37,11 @@ namespace FormUL
 
             BindingListQuestion();
 
-            lTextVariant.Visibility = Visibility.Collapsed;
-            tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
-            VariantAnswer.Visibility = Visibility.Collapsed;
-            lbCreateContent.Visibility = Visibility.Collapsed;
-            ButtonAddVariant.Visibility = Visibility.Collapsed;
-
+            //lTextVariant.Visibility = Visibility.Collapsed;
+            //tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
+            //VariantAnswer.Visibility = Visibility.Collapsed;
+            //lbCreateContent.Visibility = Visibility.Collapsed;
+            //ButtonAddVariant.Visibility = Visibility.Collapsed;
         }
 
         private void ApplyFilter()
@@ -101,7 +99,6 @@ namespace FormUL
             ClassQuestionType questionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
             if (questionType.NameQuestionType == "Выбор") {
                 content.Variants = variants.ToArray();
-               
             }
 
             question.TypeQuestion = questionType.NameQuestionType;
@@ -113,9 +110,6 @@ namespace FormUL
             Connection.InsertQuestion(question);
 
             Connection.questions.Add(question);
-
-
-
         }
 
 
@@ -128,9 +122,22 @@ namespace FormUL
 
         private void ButtonCreateQuestion(object sender, RoutedEventArgs e)
         {
+            ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
+            if (classQuestionType == null) { return; }
+
+            if (classQuestionType.NameQuestionType == "Выбор")
+            {
+                IsEnabledVariants.IsEnabled = true;
+                if (variants.Count == 0)
+                {
+                    MessageBox.Show("Добавьте варианты ответов");
+                    return;
+                }
+            }
             CreateQuestion();
             cbCteateTypeQuestion.SelectedItem = null;
             tbCreateTextQuestion.Clear();
+
             variants.Clear();
         }
 
@@ -143,7 +150,19 @@ namespace FormUL
                 return;
             }
             variants.Add(variantQuestion);
+
             tbCteateVariantQuestion.Clear();
+        }
+
+        public void IsEnabledVariant()
+        {
+            ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
+            if (classQuestionType == null) { return; }
+
+            if (classQuestionType.NameQuestionType == "Выбор")
+            {
+                IsEnabledVariants.IsEnabled = true;
+            }
         }
 
         private void CbCteateTypeQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -151,23 +170,18 @@ namespace FormUL
             ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
             if (classQuestionType == null) { return; }
 
-            switch (classQuestionType.NameQuestionType)
+            if (classQuestionType.NameQuestionType == "Выбор")
             {
-                case "Ввод":
-                    lTextVariant.Visibility = Visibility.Collapsed;
-                    tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
-                    VariantAnswer.Visibility = Visibility.Collapsed;
-                    lbCreateContent.Visibility = Visibility.Collapsed;
-                    ButtonAddVariant.Visibility = Visibility.Collapsed;
-                    break;
-                case "Выбор":
-                    lTextVariant.Visibility = Visibility.Visible;
-                    tbCteateVariantQuestion.Visibility = Visibility.Visible;
-                    VariantAnswer.Visibility = Visibility.Visible;
-                    lbCreateContent.Visibility = Visibility.Visible;
-                    ButtonAddVariant.Visibility = Visibility.Visible;
-                    break;
+                IsEnabledVariants.IsEnabled = true;
+                BtnCreateQuestion.IsEnabled = true;
             }
+            if (classQuestionType.NameQuestionType == "Ввод")
+            {
+                IsEnabledVariants.IsEnabled = false;
+                BtnCreateQuestion.IsEnabled = true;
+            }
+           
+
         }
     }
 }

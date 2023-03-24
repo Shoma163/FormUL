@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Npgsql;
 using NpgsqlTypes;
+using System.Reflection;
+using System.Windows.Threading;
 
 namespace FormUL
 {
@@ -30,7 +32,5 @@ namespace FormUL
 
             DataContext = this;
         }
-
-        
     }
 }
