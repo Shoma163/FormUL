@@ -33,7 +33,7 @@ namespace FormUL
         public void ApplyFilterForm()
         {
 
-            ICollectionView view = CollectionViewSource.GetDefaultView(lbListForm.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvListForm.ItemsSource);
             if (view == null) { return; }
 
             if (view.CanFilter == true)
@@ -69,13 +69,13 @@ namespace FormUL
         {
             Binding binding = new Binding();
             binding.Source = Connection.forms;
-            lbListForm.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            lvListForm.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableForm();
         }
 
         private void LbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ClassForm classForm = lbListForm.SelectedItem as ClassForm;
+            ClassForm classForm = lvListForm.SelectedItem as ClassForm;
 
 
             Control.PageTeacher.SetFormId(classForm.id);

@@ -18,7 +18,7 @@
         <Label Content="Список Вопросов" FontWeight="Bold" Margin="15"></Label>
         
         <Grid Margin="5 40 5 10">
-            <ListView ItemTemplate="{StaticResource ListQuestion}" Name="lbListQuestion"></ListView>
+            <ListView ItemTemplate="{StaticResource ListQuestion}" Name="lvListQuestion" SelectionChanged="lvListQuestion_SelectionChanged"></ListView>
         </Grid>
 
         <Grid Margin="0 10 0 10" Grid.Column="1" Grid.ColumnSpan="2" Background="Black">
@@ -28,12 +28,12 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Margin="1 0 0 0" Background="White" IsEnabled="False">
-                <StackPanel Margin="5">
+            <StackPanel Grid.Column="0" Margin="1 0 0 0" Background="White" >
+                <StackPanel Margin="5" Name="UpdateQuestion" IsEnabled="False">
                     <Label Content="Изменить вопрос" FontWeight="Bold"></Label>
 
                     <Label Content="Текст вопроса" FontSize="11"></Label>
-                    <TextBox Name="tbUpdateTextQuestion"></TextBox>
+                    <TextBox Name="tbUpdateTextQuestion" Text="{Binding Content.Text}"></TextBox>
                     
                     <Label Content="- - - - - - - - - - - - - - -  - - - -"></Label>
                     
@@ -41,7 +41,7 @@
                     <TextBox Name="tbUpdateVariantQuestion"></TextBox>
                     
                     <Label Content="Варианты ответов" FontSize="11"></Label>
-                    <ListBox Height="100" Name="lbUpdateContent"></ListBox>
+                    <ListBox Height="100" Name="lbUpdateContent" ItemsSource="{Binding Content.Variants}"></ListBox>
 
                     <Button Content="Добавить вариант" Background="White" Margin=" 0 10 0 0"></Button>
                     <Button Content="Удалить вариант" Background="White" Margin=" 0 10 0 0"></Button>
@@ -63,7 +63,7 @@
                     <Label Content="Тип ответа" FontSize="11"></Label>
                     <ComboBox Name="cbCteateTypeQuestion" DisplayMemberPath="NameQuestionType" SelectionChanged="CbCteateTypeQuestion_SelectionChanged"></ComboBox>
                     
-                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"  Name="BtnCreateQuestion"></Button>
+                    <Button Background="White" Content="Создать вопрос" Margin="0 10 0 0" Click="ButtonCreateQuestion"  Name="BtnCreateQuestion" IsEnabled="False"></Button>
                     <StackPanel Name="IsEnabledVariants" IsEnabled="False">
                     <Label Content="- - - - - - - - - - - - - - - - - - - -"></Label>
 

@@ -31,22 +31,13 @@ namespace FormUL
             variants= new ObservableCollection<string>();
             questions = new ObservableCollection<ClassQuestion>();
 
-            LbBindingVariantAnswer();
+            Bindings();
 
-            CbBindingTypeQuestion();
-
-            BindingListQuestion();
-
-            //lTextVariant.Visibility = Visibility.Collapsed;
-            //tbCteateVariantQuestion.Visibility = Visibility.Collapsed;
-            //VariantAnswer.Visibility = Visibility.Collapsed;
-            //lbCreateContent.Visibility = Visibility.Collapsed;
-            //ButtonAddVariant.Visibility = Visibility.Collapsed;
         }
 
         private void ApplyFilter()
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(lbListQuestion.ItemsSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(lvListQuestion.ItemsSource);
             if (view == null ) { return; }
 
             if (view.CanFilter == true)
@@ -61,7 +52,14 @@ namespace FormUL
             }
         }
 
+        public void Bindings()
+        {
+            LbBindingVariantAnswer();
 
+            CbBindingTypeQuestion();
+
+            BindingListQuestion();
+        }
         public void CbBindingTypeQuestion()
         {
             Binding binding = new Binding
@@ -71,7 +69,6 @@ namespace FormUL
             cbCteateTypeQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableTypeQuestion();
         }
-
         public void LbBindingVariantAnswer()
         {
             Binding binding = new Binding
@@ -80,11 +77,10 @@ namespace FormUL
             };
             lbCreateContent.SetBinding(ItemsControl.ItemsSourceProperty, binding);
         }
-
         public void BindingListQuestion()
         {
             Binding binding = new Binding { Source = Connection.questions };
-            lbListQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+            lvListQuestion.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableQuestion();
         }
 
@@ -124,6 +120,8 @@ namespace FormUL
         {
             ClassQuestionType classQuestionType = cbCteateTypeQuestion.SelectedItem as ClassQuestionType;
             if (classQuestionType == null) { return; }
+            string text = tbCreateTextQuestion.Text.Trim();
+
 
             if (classQuestionType.NameQuestionType == "Выбор")
             {
@@ -131,6 +129,14 @@ namespace FormUL
                 if (variants.Count == 0)
                 {
                     MessageBox.Show("Добавьте варианты ответов");
+                    return;
+                }
+            }
+            if (classQuestionType.NameQuestionType == "Ввод")
+            {
+                if (text.Length == 0)
+                {
+                    MessageBox.Show("Заполните поле текст вопроса");
                     return;
                 }
             }
@@ -183,5 +189,16 @@ namespace FormUL
            
 
         }
+
+        public void lvListQuestion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var question = lvListQuestion.SelectedItem as ClassQuestion;
+
+            UpdateQuestion.DataContext = question;
+
+            UpdateQuestion.IsEnabled= true;
+        }
+
+       
     }
 }
