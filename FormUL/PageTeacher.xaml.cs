@@ -28,7 +28,7 @@ namespace FormUL
         {
             InitializeComponent();
 
-            variants= new ObservableCollection<string>();
+            variants = new ObservableCollection<string>();
             questions = new ObservableCollection<ClassQuestion>();
 
             Bindings();
@@ -202,7 +202,8 @@ namespace FormUL
         }
 
         private void lbUpdateContent_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        { 
+
                 if (lbUpdateContent.SelectedItem == null) { return; }
                 var displayVariants = tbUpdateVariantQuestion.Text = lbUpdateContent.SelectedItem.ToString();
                 if (displayVariants == null) { return; }
@@ -213,7 +214,8 @@ namespace FormUL
             UpdateQuestion.IsEnabled = false;
             tbUpdateVariantQuestion.Clear();
             tbUpdateTextQuestion.Clear();
-            lbUpdateContent.ItemsSource = null;
+            UpdateQuestion.DataContext = null;
+            lvListQuestion.SelectedItem = null;
         }
     }
 }
