@@ -41,7 +41,7 @@
                     <TextBox Name="tbUpdateVariantQuestion"></TextBox>
                     
                     <Label Content="Варианты ответов" FontSize="11"></Label>
-                    <ListBox Height="100" Name="lbUpdateContent" ItemsSource="{Binding Content.Variants}"></ListBox>
+                    <ListView Height="100" Name="lbUpdateContent" ItemsSource="{Binding Content.Variants}" SelectionChanged="lbUpdateContent_SelectionChanged"></ListView>
 
                     <Button Content="Добавить вариант" Background="White" Margin=" 0 10 0 0"></Button>
                     <Button Content="Удалить вариант" Background="White" Margin=" 0 10 0 0"></Button>
@@ -54,7 +54,7 @@
             </StackPanel>
             
             <StackPanel Grid.Column="1" Margin="1 0 0 0" Background="White">
-                <StackPanel Margin="5">
+                <StackPanel Margin="5" Name="SpCreateQuestion" GotFocus ="SpCreateQuestion_GotFocus">
                     <Label Content="Создать новый вопрос" FontWeight="Bold"></Label>
                     
                     <Label Content="Текст вопроса" FontSize="11"></Label>
@@ -71,7 +71,7 @@
                     <TextBox Name="tbCteateVariantQuestion"></TextBox>
 
                     <Label Content="Варианты ответов" FontSize="11" Name="VariantAnswer"></Label>
-                    <ListBox Height="100" Name="lbCreateContent"></ListBox>
+                    <ListView Height="100" Name="lbCreateContent"></ListView>
 
                     <Button Name="ButtonAddVariant" Content="Добавить вариант" Background="White" Margin=" 0 10 0 0" Click="AddVariantQuestion"></Button>
                     </StackPanel>

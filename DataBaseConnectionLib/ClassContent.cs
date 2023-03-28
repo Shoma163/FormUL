@@ -20,11 +20,7 @@ namespace DataBaseConnectionLib
                     return string.Join(", ", Variants);
                 }
                 return "";
-            }
-            set
-            {
-
-            }
+            } set {}
         }
     }
 }

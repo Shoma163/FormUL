@@ -197,8 +197,23 @@ namespace FormUL
             UpdateQuestion.DataContext = question;
 
             UpdateQuestion.IsEnabled= true;
+
+            tbUpdateVariantQuestion.Clear();
         }
 
-       
+        private void lbUpdateContent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                if (lbUpdateContent.SelectedItem == null) { return; }
+                var displayVariants = tbUpdateVariantQuestion.Text = lbUpdateContent.SelectedItem.ToString();
+                if (displayVariants == null) { return; }
+        }
+
+        private void SpCreateQuestion_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UpdateQuestion.IsEnabled = false;
+            tbUpdateVariantQuestion.Clear();
+            tbUpdateTextQuestion.Clear();
+            lbUpdateContent.ItemsSource = null;
+        }
     }
 }
