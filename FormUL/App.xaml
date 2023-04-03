@@ -57,5 +57,26 @@
 
             </Grid>
         </DataTemplate>
+
+
+        <DataTemplate x:Key="AvailableForm">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock Grid.Column="0" Margin="5" HorizontalAlignment="Center">
+                    <Run Text="{Binding id}" FontWeight="Bold" FontSize="14"></Run>
+                </TextBlock>
+
+                <TextBlock Grid.Column="1" Margin="5">
+                    <Run Text="Название: "></Run>
+                    <Run Text="{Binding Name}"></Run>
+                </TextBlock>
+            </Grid>
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>

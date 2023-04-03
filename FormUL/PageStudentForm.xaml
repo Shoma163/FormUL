@@ -1,0 +1,29 @@
+﻿<Page x:Class="FormUL.PageStudentForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FormUL"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageStudentForm">
+
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel  Margin="10 5 10 10">
+            <Label Content="Доступные анкеты" FontSize="14" FontWeight="Bold"></Label>
+            <ListView Height="360" Name="LvAvailableForm" ItemTemplate="{StaticResource AvailableForm}" ItemsSource="{Binding Form}"></ListView>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="10 5 10 10">
+            <Label Content="Выполненые анкеты" FontSize="14" FontWeight="Bold"></Label>
+            <ListView Height="330"></ListView>
+            <Button Margin="0 10 0 0" Content="Перейти" Background="White" Click="AvailableTest"></Button>
+        </StackPanel>
+    </Grid>
+</Page>

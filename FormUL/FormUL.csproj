@@ -124,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PageStudentForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageTeacher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +139,9 @@
     </Compile>
     <Compile Include="PageRegistration.xaml.cs">
       <DependentUpon>PageRegistration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PageStudentForm.xaml.cs">
+      <DependentUpon>PageStudentForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="PageTeacher.xaml.cs">
       <DependentUpon>PageTeacher.xaml</DependentUpon>

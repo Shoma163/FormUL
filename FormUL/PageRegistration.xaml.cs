@@ -98,7 +98,7 @@ namespace FormUL
 
                         break;
                     case "Student":
-                        NavigationService.Navigate(new PageNavigate());
+                        NavigationService.Navigate(new PageStudentForm());
                         break;
                 }
                 return;
