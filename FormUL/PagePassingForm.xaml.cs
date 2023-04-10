@@ -53,7 +53,6 @@ namespace FormUL
                 StackPanel stackPanel = new StackPanel();
 
                 border.Child = stackPanel;
-                Run run = new Run("Вопрос: ");
                 TextBlock textBlock = new TextBlock();
                 textBlock.Margin = new Thickness(5, 0, 0, 5);
                 textBlock.Text = question.Content.Text;
