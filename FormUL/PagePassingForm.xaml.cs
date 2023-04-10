@@ -46,13 +46,16 @@ namespace FormUL
             {
                 Border border = new Border();
                 border.Padding = new Thickness(10);
-                
+                border.BorderThickness = new Thickness(1);
+                border.BorderBrush = Brushes.Black;
+                border.Margin = new Thickness(5);
 
                 StackPanel stackPanel = new StackPanel();
 
                 border.Child = stackPanel;
-
+                Run run = new Run("Вопрос: ");
                 TextBlock textBlock = new TextBlock();
+                textBlock.Margin = new Thickness(5, 0, 0, 5);
                 textBlock.Text = question.Content.Text;
                 stackPanel.Children.Add(textBlock);
 
