@@ -8,7 +8,18 @@ namespace FormUL
 {
     public class Control
     {
-        public static PageTeacher pageTeacher;
+        private static PagePassingForm pagePassing;
+        public static PagePassingForm PagePassing
+        {
+            get 
+            {
+                if (pagePassing == null) 
+                    pagePassing = new PagePassingForm();
+                return pagePassing;
+            }
+        }
+
+        private static PageTeacher pageTeacher;
         public static PageTeacher PageTeacher
         {
             get

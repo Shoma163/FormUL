@@ -22,27 +22,23 @@ namespace FormUL
         {
             InitializeComponent();
 
-            LvBindeingAvailableForm();
+            LvBindingAvailableForm();
         }
 
-        public void LvBindeingAvailableForm()
+        public void LvBindingAvailableForm()
         {
             Binding binding = new Binding { Source = Connection.forms };
             LvAvailableForm.SetBinding(ItemsControl.ItemsSourceProperty, binding);
             Connection.SelectTableForm();
-        }
-
-        public void TransitionForm()
-        {
-            ClassForm classForm = LvAvailableForm.SelectedItem as ClassForm;
-            if (classForm != null) { return; }
-
-
+            Connection.SelectTableQuestion();
         }
 
         private void AvailableTest(object sender, RoutedEventArgs e)
         {
-
+            ClassForm classform = LvAvailableForm.SelectedItem as ClassForm;
+            if (classform == null) { return; }
+            Control.PagePassing.SetFormId(classform.id);
+            NavigationService.Navigate(Control.PagePassing);
         }
     }
 }

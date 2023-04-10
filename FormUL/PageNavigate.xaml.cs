@@ -76,8 +76,7 @@ namespace FormUL
         private void LbListForm_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ClassForm classForm = lvListForm.SelectedItem as ClassForm;
-
-
+            if (classForm == null) return;
             Control.PageTeacher.SetFormId(classForm.id);
             NavigationService.Navigate(Control.PageTeacher);
         }
